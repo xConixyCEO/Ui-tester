@@ -1,4 +1,8 @@
--- GalaxyUI Library - Save this as Ui.lua
+-- =============================================
+-- CORRECTED GALAXY UI v2.2 - Library Only
+-- Fixed: Missing closing parentheses after GetChildren()
+-- =============================================
+
 local GalaxyUI = {}
 GalaxyUI.__index = GalaxyUI
 
@@ -273,11 +277,12 @@ function GalaxyUI:AddWindow(title, options)
 		local tabData = {Tab = tab, Button = tabButton, Window = self}
 		
 		function tabData:Show()
-			for _, v in pairs(tabs:GetChildren() do if v:IsA("ScrollingFrame") then v.Visible = false end end
-			for _, v in pairs(tabButtons:GetChildren() do if v:IsA("TextButton") then 
+			-- FIX: Added closing parentheses after GetChildren()
+			for _, v in pairs(tabs:GetChildren()) do if v:IsA("ScrollingFrame") then v.Visible = false end end
+			for _, v in pairs(tabButtons:GetChildren()) do if v:IsA("TextButton") then 
 				Tween(v, {BackgroundColor3 = self.Theme.Surface2, TextColor3 = self.Theme.TextSecondary}, 0.2)
 				v.Glow.Visible = false
-			end end)
+			end end
 			tab.Visible = true
 			Tween(tabButton, {BackgroundColor3 = self.Theme.Surface2, TextColor3 = Color3.fromRGB(255, 255, 255)}, 0.2)
 			glow.Visible = true
